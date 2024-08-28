@@ -5,4 +5,11 @@ Rails.application.routes.draw do
   	  resources :messages, only: [:index, :create]
   	end
   end
+
+  resources :groups, only: [:index, :show, :create] do
+    member do
+      post 'add_user'
+    end
+    resources :messages, only: [:create]
+  end
 end
